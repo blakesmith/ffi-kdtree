@@ -2,7 +2,22 @@ require 'ffi'
 
 module LibKdTree
   extend FFI::Library
-  ffi_lib 'libkdtree'
+
+  begin
+    # bias the library discovery to a path inside the gem first, then
+    # to the usual system paths
+    inside_gem = File.join(File.dirname(__FILE__), '..')
+    KDTREE_LIB_PATHS = [
+    inside_gem, '/usr/local/lib', '/opt/local/lib', '/usr/local/homebrew/lib', '/usr/lib64'
+    ].map{|path| "#{path}/kdtree.#{RbConfig::CONFIG['DLEXT']}"}
+    ffi_lib(KDTREE_LIB_PATHS + %w{kdtree})
+  rescue LoadError
+    STDERR.puts "Unable to load this gem. The kdtree library (or DLL) could not be found."
+    STDERR.puts "If this is a Windows platform, make sure kdtree.dll is on the PATH."
+    STDERR.puts "For non-Windows platforms, make sure kdree is located in this search path:"
+    STDERR.puts KDTREE_LIB_PATHS.inspect
+    exit 255
+  end
 
   callback :kd_data_destructor_callback, [:pointer], :void
 
