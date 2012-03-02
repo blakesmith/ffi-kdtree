@@ -2,7 +2,7 @@
 #
 Gem::Specification.new do |s|
   s.name        = "ffi-kdtree"
-  s.version     = "0.0.1"
+  s.version     = "0.0.2"
   s.authors     = ["Scott Deming"]
   s.email       = ["sdeming@makefile.com"]
   s.homepage    = "https://github.com/blakesmith/ffi-kdtree"
