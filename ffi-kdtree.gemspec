@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.version     = "0.0.1"
   s.authors     = ["Scott Deming"]
   s.email       = ["sdeming@makefile.com"]
-  s.homepage    = "https://github.com/sdeming/ffi-kdtree"
+  s.homepage    = "https://github.com/blakesmith/ffi-kdtree"
   s.summary     = %q{This is a simple FFI wrapped version of libkdtree for Ruby}
   s.description = %q{This is a simple FFI wrapped version of libkdtree for Ruby. 
   It's a pure ruby wrapper so this gem can be loaded and run by any ruby runtime 
