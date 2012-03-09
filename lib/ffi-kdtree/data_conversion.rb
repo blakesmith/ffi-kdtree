@@ -16,7 +16,7 @@ module KdTree
           ptr.write_string(value)
           ptr
         when :object
-          data = Marshal.dump(value)
+          data = Base64.encode64(Marshal.dump(value))
           ptr = FFI::MemoryPointer.new(data.bytesize + 1)
           ptr.write_string(data)
           ptr
@@ -35,7 +35,7 @@ module KdTree
         when :string
           data.read_string
         when :object
-          Marshal.restore(data.read_string)
+          Marshal.load(Base64.decode64(data.read_string))
       end
     end
 
